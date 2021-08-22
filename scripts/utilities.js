@@ -1,9 +1,14 @@
 /** @type {HTMLCanvasElement} */
 
 function animate(){
+    //ctx1.clearRect(0,0, canvas.width , canvas.height);
     ctx3.clearRect(0,0, canvas.width , canvas.height);
+    ctx2.drawImage(background_lvl2,0,0, CANVAS_WIDTH,CANVAS_HEIGHT);
+    
     frogger.update();
+    handleObstacles();
     frogger.draw();
+    //ctx4.drawImage(grass,0,0, CANVAS_WIDTH,CANVAS_HEIGHT);
     requestAnimationFrame(animate);
 }
 
