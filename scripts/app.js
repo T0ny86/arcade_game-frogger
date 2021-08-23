@@ -65,3 +65,8 @@ let numberOfCars = 3;
 
 const frogSprite = new Image();
 frogSprite.src = "../asset/frog_spritesheet.png";
+
+// sound effects
+
+const jumpSound = new Audio();
+jumpSound.src = "../asset/jump.wav";
