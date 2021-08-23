@@ -26,14 +26,32 @@ class Particle{
         ctx3.fill();
         ctx3.closePath();
     }
+    drawRipples(){
+        ctx1.strokeStyle = "rgba(240,240,240,"+ this.opacity +")";
+        ctx1.beginPath();
+        ctx1.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx1.stroke();
+        ctx1.closePath();
+    }
+    ripple(){
+        if(this.radius < 50){
+            this.radius += 0.7;
+            this.x -= 0.2;
+            this.y -= 0.2;
+        }
+        if(this.opacity > 0){
+            this.opacity -= 0.02;
+        }
+    }
 }
 
 function handleParticles(){
+    // Dust:
     for (let i = 0; i < particlesArray.length; i++) {
         particlesArray[i].update();
         particlesArray[i].draw();
     }
-    if(particlesArray.length > maxParticles){
+    if(particlesArray.length > maxParticles){   // maxParticles = 300
         for (let i = 0; i < 30 ; i++) {
             particlesArray.pop();  
         }
@@ -48,5 +66,31 @@ function handleParticles(){
             particlesArray.unshift(new 
                 Particle(frogger.x, frogger.y));
         }
+    }
 }
+
+function handleRipples(){
+        // water ripples
+        for (let i = 0; i < ripplesArray.length; i++) {
+            ripplesArray[i].ripple();
+            ripplesArray[i].drawRipples();
+        }
+        if(ripplesArray.length > maxRipples){ //maxRipples = 10
+            for (let i = 0; i < 8 ; i++) {
+                ripplesArray.pop();  
+            }
+        }
+        if((keys["ArrowLeft"] 
+        || keys["ArrowRight"]
+        || keys["ArrowUp"] 
+        || keys["ArrowDown"])
+        && frogger.y < 250  // prevent ripples on land
+        && frogger.y > 100
+        ){
+            for (let i = 0; i < 20; i++) {
+                ripplesArray.unshift(new 
+                    Particle(frogger.x +10, frogger.y+10));
+            }
+        }
+    
 }

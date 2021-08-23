@@ -24,8 +24,8 @@ class Obstacle{
         }
     }
     draw(){
-        ctx1.fillStyle="blue";
-        ctx1.fillRect(this.x, this.y, this.width, this. height);
+        ctx3.fillStyle="blue";
+        ctx3.fillRect(this.x, this.y, this.width, this. height);
     }
 
 }
@@ -81,6 +81,14 @@ function handleObstacles(){
     for(let i =0; i < logsArray.length; i++){
         logsArray[i].update();
         logsArray[i].draw();
+    }
+    // collision detection with cars
+    for(let i=0; i < carsArray.length; i++){
+        if(collision(frogger, carsArray[i])){
+            ctx4.drawImage(collisionImg,0,100,100,100,
+                frogger.x, frogger.y ,50, 50);
+                resetGame();
+        }
     }
 }
 
