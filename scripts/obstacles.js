@@ -8,6 +8,10 @@ class Obstacle{
         this.height = height;
         this.speed  = speed;
         this.type   = type;
+        this.frameX = 0;
+        this.frameY = 0;
+        this.randomize = Math.floor(Math.random()* 30 + 30);
+        this.carType = Math.floor(Math.random() * numberOfCars); // numberOfCars = 3
     }
     update(){
         this.x += this.speed * gameSpeed;
@@ -15,19 +19,34 @@ class Obstacle{
             // positive speed value = moving to right
             if(this.x > canvas.width + this.width){
                 this.x = 0 - this.width;
+                this.carType = Math.floor(Math.random() * numberOfCars); // numberOfCars = 3
             }
-        }else{ 
+        }else{
+            this.frameX = 1;
             // negative speed value = moving to left
             if(this.x < 0 - this.width){
                 this.x = canvas.width + this.width;
+                this.carType = Math.floor(Math.random() * numberOfCars); // numberOfCars = 3
             }
         }
     }
     draw(){
-        ctx3.fillStyle="blue";
-        ctx3.fillRect(this.x, this.y, this.width, this. height);
+        if(this.type === "turtle"){ // W:140 x H:280
+            if(frame % this.randomize === 0){
+                this.frameX >= 1 ? this.frameX = 0 : this.frameX++;
+            }    
+            ctx1.drawImage(turtle,
+                this.frameX*70, this.frameY*70,70,70,
+                this.x, this.y, this.width, this.height);    
+        } else if(this.type === "log"){
+            ctx1.drawImage(log,
+                this.x, this.y, this.width, this.height);
+        } else{
+            ctx2.drawImage(car,
+                this.frameX * this.width, this.carType * this.height , grid * 2, grid,
+                this.x, this.y, this.width, this.height);
+        }
     }
-
 }
 
 function initObstacles(){
@@ -64,7 +83,7 @@ function initObstacles(){
                  grid * 2 ,grid, -2, 'log'));
     }
     //lane 5
-    for(let i= 0; i < 2; i++){
+    for(let i= 0; i < 3; i++){
         let x = i * 200;
         logsArray.push(new 
             Obstacle(x,
@@ -90,8 +109,26 @@ function handleObstacles(){
                 resetGame();
         }
     }
+
+    // collision with logs/turtles:
+    if(frogger.y < 250 && frogger.y > 100){
+        froge_safe = false;
+        for (let i = 0; i < logsArray.length; i++) {
+            if(collision(frogger,logsArray[i])){
+                frogger.x +=logsArray[i].speed;
+                froge_safe = true;
+            }
+        }
+        if(!froge_safe) {
+            for (let i = 0; i < 20; i++) {
+                ripplesArray.unshift(new Particle(frogger.x, frogger.y));
+            }
+            resetGame();}
+    }
 }
 
 // starts:
 
 initObstacles();
+
+

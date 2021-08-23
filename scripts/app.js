@@ -33,6 +33,7 @@ let score = 0;
 let collisionsCount = 0;
 let frame = 0;
 let gameSpeed = 1;
+let froge_safe = false;
 
 const particlesArray = [];
 const maxParticles = 300;
@@ -50,4 +51,15 @@ grass.src = "../asset/grass.png";
 
 const collisionImg = new Image();
 collisionImg.src = "../asset/collisions.png";
+
+const turtle = new Image();
+turtle.src = "../asset/turtles.png";
+
+const log = new Image();
+log.src = "../asset/log.png";
+
+const car = new Image();
+car.src = "../asset/cars.png";
+
+let numberOfCars = 3;
 
