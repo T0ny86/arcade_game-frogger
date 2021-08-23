@@ -63,3 +63,5 @@ car.src = "../asset/cars.png";
 
 let numberOfCars = 3;
 
+const frogSprite = new Image();
+frogSprite.src = "../asset/frog_spritesheet.png";

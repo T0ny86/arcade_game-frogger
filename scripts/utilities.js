@@ -37,7 +37,7 @@ if(keys["ArrowLeft"]
 window.addEventListener("keyup", (e)=>{
     delete keys[e.code];
     frogger.moving = false;
-
+    frogger.frameX = 0;
 });
 
 function scored(){
