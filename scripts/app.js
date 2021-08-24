@@ -52,15 +52,15 @@ const grass = new Image();
 grass.src = "asset/grass.png";
 
 const collisionImg = new Image();
-collisionImg.src = "/asset/collisions.png";
+collisionImg.src = "//arcade_game-frogger/asset/collisions.png";
 
 const turtle = new Image();
 // turtle.src = "../asset/turtles.png";
-turtle.src = "/asset/turtles.png";
+turtle.src = "//./asset/turtles.png";
 
 const log = new Image();
 // log.src = "../asset/log.png";
-log.src = "/asset/log.png";
+log.src = "https://t0ny86.github.io/arcade_game-frogger/asset/log.png";
 
 const car = new Image();
 // car.src = "../asset/cars.png";
