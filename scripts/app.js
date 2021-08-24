@@ -69,4 +69,4 @@ frogSprite.src = "..\\asset\\frog_spritesheet.png";
 // sound effects
 
 const jumpSound = new Audio();
-jumpSound.src = "..\\asset\\jump.wav";
+jumpSound.src = "../asset/jump.wav";
