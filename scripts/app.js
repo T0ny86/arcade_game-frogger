@@ -45,7 +45,7 @@ const logsArray = [];
 //images :
 const background_lvl2 = new Image();
 // background_lvl2.src = "../asset/background_lvl2.png";
-background_lvl2.src = "/arcade_game-frogger/asset/background_lvl2.png";
+background_lvl2.src = "./arcade_game-frogger/asset/background_lvl2.png";
 
 const grass = new Image();
 // grass.src = "../asset/grass.png";
